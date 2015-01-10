@@ -19,7 +19,10 @@ rm -vf "${target}/usr/lib/libstdc++.so.6.0.20-gdb.py"
 rm -vf "${target}/lib/systemd/system/sysinit.target.wants/systemd-udev-hwdb-update.service"
 
 # don't symlink /run to /tmp
-rm -vf "${target}/run" && mkdir "${target}/run"
-rm -vf "${target}/var/run" && ln -vs "../run" "${target}/var/run"
+rm -rvf "${target}/run" && mkdir "${target}/run"
+rm -rvf "${target}/var/run" && ln -vs "../run" "${target}/var/run"
+
+# make sure /tmp is empty
+rm -rvf "${target}/tmp/*"
 
 sed -i '/uaccess/d' "${target}/lib/udev/rules.d/73-seat-late.rules"
