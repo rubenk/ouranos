@@ -21,8 +21,15 @@ rm -vf "${target}/lib/systemd/system/sysinit.target.wants/systemd-udev-hwdb-upda
 # don't symlink /run to /tmp
 rm -rvf "${target}/run" && mkdir "${target}/run"
 rm -rvf "${target}/var/run" && ln -vs "../run" "${target}/var/run"
+rm -rvf "${target}/var/log" && mkdir "${target}/var/log"
+rm -rvf "${target}/var/spool" && mkdir "${target}/var/spool"
+rm -rvf "${target}/var/lock" && mkdir "${target}/var/lock"
+rm -rvf "${target}/var/cache" && mkdir "${target}/var/cache"
 
 # make sure /tmp is empty
-rm -rvf "${target}/tmp/*"
+rm -rvf "${target}/tmp/dbus"
+rm -rvf "${target}/tmp/journal"
+rm -rvf "${target}/tmp/ldconfig"
+rm -vf  "${target}/tmp/README"
 
 sed -i '/uaccess/d' "${target}/lib/udev/rules.d/73-seat-late.rules"
