@@ -32,4 +32,8 @@ rm -rvf "${target}/tmp/journal"
 rm -rvf "${target}/tmp/ldconfig"
 rm -vf  "${target}/tmp/README"
 
+# strange udev error
 sed -i '/uaccess/d' "${target}/lib/udev/rules.d/73-seat-late.rules"
+
+# volatile journal
+sed -i 's/^#Storage=auto/Storage=volatile/' "${target}/etc/systemd/journald.conf"
