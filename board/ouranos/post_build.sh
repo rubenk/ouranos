@@ -11,7 +11,6 @@ rm -rvf "${target}/etc/network/"
 rm -rvf "${target}/usr/share/bash-completion/"
 rm -rvf "${target}/usr/share/zsh/"
 rm -rvf "${target}/usr/lib/rpm/"
-rm -rvf "${target}/usr/share/udhcpc/"
 rm -vf "${target}/usr/bin/kernel-install"
 rm -vf "${target}/usr/lib/libstdc++.so.6.0.20-gdb.py"
 
