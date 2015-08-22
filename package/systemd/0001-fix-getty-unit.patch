@@ -12,7 +12,7 @@ diff -aburN systemd-212.orig/units/getty@.service.m4 systemd-212/units/getty@.se
  [Service]
  # the VT is cleared by TTYVTDisallocate
 -ExecStart=-/sbin/agetty --noclear %I $TERM
-+ExecStart=-/sbin/getty -L %I 115200 vt100
++ExecStart=-/sbin/getty -L %I 115200 $TERM
  Type=idle
  Restart=always
  RestartSec=0
@@ -24,7 +24,7 @@ diff -aburN systemd-212.orig/units/serial-getty@.service.m4 systemd-212/units/se
  
  [Service]
 -ExecStart=-/sbin/agetty --keep-baud 115200,38400,9600 %I $TERM
-+ExecStart=-/sbin/getty -L %I 115200 vt100
++ExecStart=-/sbin/getty -L %I 115200 $TERM
  Type=idle
  Restart=always
  RestartSec=0
