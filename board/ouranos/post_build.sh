@@ -23,7 +23,10 @@ rm -rvf "${target}/var/cache" && mkdir "${target}/var/cache"
 rm -rvf "${target}/var/tmp" && mkdir "${target}/var/tmp"
 
 # make sure /tmp is empty
-rm -rvf "${target}/tmp/*"
+rm -rvf "${target}/tmp" && mkdir "${target}/tmp"
+
+# .busname units only work with kdbus
+find "${target}/lib/systemd/system/busnames.target.wants/" -type l -name \*.busname -delete
 
 # volatile journal
 sed -i 's/^#Storage=auto/Storage=volatile/' "${target}/etc/systemd/journald.conf"
