@@ -2,17 +2,11 @@
 
 target="$1"
 rm -vf "${target}/etc/fstab"
-rm -vf "${target}/etc/inittab"
-rm -vf "${target}/etc/random-seed"
-rm -vf "${target}/etc/securetty"
 rm -rvf "${target}/etc/init.d/"
 rm -rvf "${target}/etc/rc.d/"
 rm -rvf "${target}/etc/network/"
-rm -rvf "${target}/usr/share/bash-completion/"
-rm -rvf "${target}/usr/share/zsh/"
 rm -rvf "${target}/usr/lib/rpm/"
 rm -vf "${target}/usr/bin/kernel-install"
-rm -vf "${target}/usr/lib/libstdc++.so.6.0.20-gdb.py"
 
 # don't build udev hwdb
 rm -vf "${target}/lib/systemd/system/sysinit.target.wants/systemd-udev-hwdb-update.service"
@@ -30,9 +24,6 @@ rm -rvf "${target}/tmp/dbus"
 rm -rvf "${target}/tmp/journal"
 rm -rvf "${target}/tmp/ldconfig"
 rm -vf  "${target}/tmp/README"
-
-# strange udev error
-sed -i '/uaccess/d' "${target}/lib/udev/rules.d/73-seat-late.rules"
 
 # volatile journal
 sed -i 's/^#Storage=auto/Storage=volatile/' "${target}/etc/systemd/journald.conf"
