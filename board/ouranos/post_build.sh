@@ -28,5 +28,8 @@ rm -vf  "${target}/tmp/README"
 # volatile journal
 sed -i 's/^#Storage=auto/Storage=volatile/' "${target}/etc/systemd/journald.conf"
 
+# strange udev error
+sed -i '/uaccess/d' "${target}/lib/udev/rules.d/73-seat-late.rules"
+
 cp ${BINARIES_DIR}/syslinux/menu.c32 "${target}/boot/syslinux/"
 cp ${BINARIES_DIR}/syslinux/libutil.c32 "${target}/boot/syslinux/"
