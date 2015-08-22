@@ -19,11 +19,11 @@ rm -rvf "${target}/var/spool" && mkdir "${target}/var/spool"
 rm -rvf "${target}/var/lock" && mkdir "${target}/var/lock"
 rm -rvf "${target}/var/cache" && mkdir "${target}/var/cache"
 
+# don't symlink /var/tmp to /tmp
+rm -rvf "${target}/var/tmp" && mkdir "${target}/var/tmp"
+
 # make sure /tmp is empty
-rm -rvf "${target}/tmp/dbus"
-rm -rvf "${target}/tmp/journal"
-rm -rvf "${target}/tmp/ldconfig"
-rm -vf  "${target}/tmp/README"
+rm -rvf "${target}/tmp/*"
 
 # volatile journal
 sed -i 's/^#Storage=auto/Storage=volatile/' "${target}/etc/systemd/journald.conf"
